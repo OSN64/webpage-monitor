@@ -19,7 +19,11 @@ function starMoniter() {
     var monitor = new Monitor(task.url, task.interval * 1000, function ($old, $new) {
       return eval(task.compareFunc);
     }, function ($old, $new) {
-      var transport = nodemailer.createTransport('Sendmail');
+      console.log('sendmail...');
+      var transport = nodemailer.createTransport('sendmail', {
+        path: '/usr/sbin/sendmail'
+      });
+      console.log('...');
       transport.sendMail({
         from: 'notify@webpagemonitor.com',
         to: task.email,

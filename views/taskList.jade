@@ -1,0 +1,35 @@
+h2 Task List
+ul.task-list
+  li(ng-repeat="task in taskList", ng-controller="eachTask")
+    form(ng-submit="submit()")
+      p Task: {{task.id}}
+      p Name:
+        input(type="text", name="name", ng-model="task.name", required)
+      p URL:
+        input(type="text", name="url", ng-model="task.url", required)
+      p interval(s):
+        input(name="interval", type="text", ng-model="task.interval", required);
+      p email:
+        input(name="email", type="text", ng-model="task.email", required);
+      p compare function:
+        textarea(name="compareFunc", ng-model="task.compareFunc", required);
+      p
+        input(type="submit", value="Submit")
+      p
+        a(href="#", ng-click="remove()") delete
+
+hr
+h2 New Task
+form(ng-submit="submit()", ng-controller="newTaskForm")
+  p Name:
+    input(type="text", name="name", ng-model="name", required)
+  p URL:
+    input(type="text", name="url", ng-model="url", required)
+  p interval(s):
+    input(name="interval", type="text", ng-model="interval", required);
+  p email:
+    input(name="email", type="text", ng-model="email", required);
+  p compare function:
+    textarea(name="compareFunc", ng-model="compareFunc", required);
+  p
+    input(type="submit", value="Submit")

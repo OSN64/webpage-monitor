@@ -4,6 +4,9 @@ var growl = require('growl');
 
 var bodyHandler = function (that) {
   return function (error, meta, body) {
+    if (error || !body) {
+      return;
+    }
     body = body.toString();
     jsdom.env({
       html: body,

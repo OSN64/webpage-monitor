@@ -15,6 +15,9 @@ var bodyHandler = function (that) {
       ]
     }, function (err, window) {
       var $ = window.jQuery;
+      if (typeof $ !== 'function') {
+        return;
+      }
       if (!that.lastBody) {
         that.lastBody = window;
       } else if (that.comparison(that.lastBody.jQuery, $)) {
@@ -30,9 +33,7 @@ var bodyHandler = function (that) {
 function Monitor(url, interval, comparison, callback) {
   if (!callback) {
     callback = comparison;
-    comparison = function ($old, $new) {
-      return $old('html').html() === $new('html').html();
-    };
+    comparison = '$old("html").html() === $new("html").html()';
   }
 
   this.lastBody = null;
